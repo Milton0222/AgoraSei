@@ -1,0 +1,196 @@
+/* --- VARIABLES & BASE CONFIG --- */
+        :root {
+            --bg-gradiente: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --bg-card: #ffffff;
+            --azul-primario: #2563eb;
+            --azul-hover: #1d4ed8;
+            --texto-escuro: #1e293b;
+            --texto-mutado: #64748b;
+            --borda: #cbd5e1;
+            --borda-foco: #3b82f6;
+            --raio: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradiente);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- CONTAINER PRINCIPAL (CARD) --- */
+        .auth-container {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 32px;
+            border-radius: var(--raio);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- CABEÇALHO DAS TELAS --- */
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-header .logo-icon {
+            font-size: 2.5rem;
+            color: var(--azul-primario);
+            margin-bottom: 12px;
+        }
+
+        .auth-header h2 {
+            color: var(--texto-escuro);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .auth-header p {
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
+        }
+
+        /* --- FORMULÁRIOS & CAMPOS --- */
+        .auth-form {
+            display: none; /* Controlado via JS */
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--texto-escuro);
+            margin-bottom: 6px;
+        }
+
+        /* Input Container para alinhar ícones */
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            color: var(--texto-mutado);
+            font-size: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px 12px 42px; /* Espaço para o ícone à esquerda */
+            border: 1.5px solid var(--borda);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--texto-escuro);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--borda-foco);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Opções extras como "Lembrar-me" ou "Esqueci a senha" */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+
+        .form-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--texto-mutado);
+            cursor: pointer;
+        }
+
+        .form-options a {
+            color: var(--azul-primario);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-options a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-submit {
+            width: 100%;
+            background-color: var(--azul-primario);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--azul-hover);
+        }
+
+        /* --- ALTERNAR ENTRE TELAS (ROUTING SIMULADO) --- */
+        .auth-footer {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 0.9rem;
+            color: var(--texto-mutado);
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+        }
+
+        .auth-footer button {
+            background: none;
+            border: none;
+            color: var(--azul-primario);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 4px;
+        }
+
+        .auth-footer button:hover {
+            text-decoration: underline;
+        }
+
+        /* Animação simples de transição */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
