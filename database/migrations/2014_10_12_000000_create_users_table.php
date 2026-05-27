@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('isAdmin')->default(0);
+            $table->boolean('isEst')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
