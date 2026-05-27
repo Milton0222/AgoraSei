@@ -1,4 +1,5 @@
-AgoraSEI- é uma plataforma de auxilio académico para estudantes que precisam de suporte para escolher o melhor curso de graduação em Angola que combina com seu perfil acdémico e social.
+AgoraSEI- é uma plataforma de auxilio académico para estudantes que precisam de suporte para escolher o melhor curso de graduação em Angola que combina com  
+seu perfil acdémico e social.
 
 
 TEAM de desenvolvimento:
