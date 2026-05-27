@@ -71,7 +71,11 @@
         </div>
 
         <div class="sidebar-footer">
-            <a href="index2.html" class="btn-logout"><i class="fa-solid fa-sign-out-alt"></i> Sair do Painel</a>
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+            <a href="{{ route('logout') }}"
+                                         @click.prevent="$root.submit();" class="btn-logout"><i class="fa-solid fa-sign-out-alt"></i> Sair do Painel</a>
+            </form>
         </div>
     </aside>
 
@@ -128,7 +132,13 @@
                         </x-slot>
                     </x-dropdown>
                     </h4>
-                    <p style="font-size: 0.75rem; color: var(--texto-mutado);">Administrador</p>
+                    <p style="font-size: 0.75rem; color: var(--texto-mutado);">
+                        @if(Auth::user()->isAdmin && Auth::user()->isEst)
+                            Administrador
+                        @elseif(Auth::user()->isEst)
+                            Estudante 
+                        @endif
+                        </p>
                 </div>
             </div>
         </header>
