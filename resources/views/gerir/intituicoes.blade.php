@@ -30,9 +30,9 @@
                 <thead>
                     <tr>
                         <th>Instituição</th>
-                        <th>Sigla</th>
+                        <th>Contacto</th>
                         <th>Tipo</th>
-                        <th>Departamentos</th>
+                        <th>Estado</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                     @foreach ($inst as $insts)
                     <tr>
                         <td style="font-weight: 500;">{{$insts->descricao}}</td>
-                        <td style="color: var(--texto-mutado);">...</td>
+                        <td style="color: var(--texto-mutado);">{{$insts->linha_atendimento}}</td>
                         <td>
                             @if($insts->tipo=='Publica')
                             <span class="badge badge-publica">{{$insts->tipo}}</span>
@@ -48,10 +48,17 @@
                             <span class="badge badge-privada">{{$insts->tipo}}</span>
                             @endif
                         </td>
-                        <td>.......</td>
+                        <td>
+                            @if($insts->estado)
+                            <p class="on">Activo.</p>
+                            @else
+                            <p class="of">Inactivo.</p>
+                            @endif
+                        </td>
                         <td class="actions-cell">
                             <a onclick="actualizar('{{$insts->instagram}}','{{$insts->linha_atendimento}}','{{$insts->whatsap}}','{{$insts->facebook}}','{{$insts->site}}','{{$insts->inicio_funcao}}','{{$insts->estado}}','{{$insts->amibiente_campus}}','{{$insts->reconhecido}}','{{$insts->modalidade_estudo}}','{{$insts->qtd_professor}}','{{$insts->qtd_estudante}}','{{$insts->localizacao}}','{{$insts->provincia}}','{{$insts->custo_licenciatura}}','{{$insts->descricao}}','{{$insts->id}}','{{$insts->tipo}}')" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a onclick="apagar('{{$insts->descricao}}','{{$insts->id}}')" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
+                            <a onclick="mudar('{{$insts->id}}','{{$insts->estado}}')" title="Arquivar e Activar"><i class="fa-solid fa-info-circle"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -187,6 +194,22 @@
 </x-app-layout>
 
 <script>
+    //desabilitar
+
+    function mudar(id, estado) {
+       
+        if (estado==1) {
+            if (confirm("Deseja arquivar a instituição selecionada?")) {
+                window.location.href = `/inst/${id}`;
+            }
+
+        } else{
+            if (confirm("Deseja activar a instituição selecionada?")) {
+                window.location.href = `/inst/${id}`;
+
+            }
+        }
+    }
     //filtrar instituicao
 
     function buscar() {

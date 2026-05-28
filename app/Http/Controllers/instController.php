@@ -11,32 +11,47 @@ class instController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request=null)
+    public function index(Request $request = null)
     {
         //
 
-        $request=$request?: request();
+        $request = $request ?: request();
 
-        $query=instituicoes::query();
+        $query = instituicoes::query();
 
-        if($request->filled('nome')){
-             $query->where('descricao','LIKE','%'.$request->nome.'%');
+        if ($request->filled('nome')) {
+            $query->where('descricao', 'LIKE', '%' . $request->nome . '%');
         }
-        if($request->filled('tipo')){
-             $query->where('tipo',$request->tipo);
+        if ($request->filled('tipo')) {
+            $query->where('tipo', $request->tipo);
         }
 
-        $inst=$query->get();
+        $inst = $query->get();
 
-        return view('gerir.intituicoes',compact('inst'));
+        return view('gerir.intituicoes', compact('inst'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function mudar($id)
     {
         //
+        $inst = instituicoes::findorfail($id);
+
+        if ($inst['estado'] == 1) {
+            $inst->update([
+                'estado' => 0
+            ]);
+            alert($inst['descricao'], 'Foi arquivada.', 'success');
+            return redirect()->route('inst.index');
+        } else {
+            $inst->update([
+                'estado' => 1
+            ]);
+            alert($inst['descricao'], 'Foi Activada.', 'success');
+            return redirect()->route('inst.index');
+        }
     }
 
     /**
@@ -47,7 +62,7 @@ class instController extends Controller
         //
 
         if (Auth::user()->isAdmin) {
-               // dd($request->all());
+            // dd($request->all());
             $inst = instituicoes::create([
                 'descricao' => $request->descricao,
                 'tipo' => $request->tipo,
@@ -63,19 +78,18 @@ class instController extends Controller
                 'linha_atendimento' => $request->linha_atendimento,
                 'whatsap' => $request->whatsap,
                 'facebook' => $request->facebook,
-                'site'=>$request->site,
+                'site' => $request->site,
                 'inicio_funcao' => $request->inicio_funcao,
                 'user_id' => Auth::user()->id
             ]);
 
-            alert($inst['descricao'],'Instituição resgistada','success');
+            alert($inst['descricao'], 'Instituição resgistada', 'success');
 
             return redirect()->route('inst.index');
-        }else{
-             alert(Auth::user()->name,'Consultar administrador','error');
+        } else {
+            alert(Auth::user()->name, 'Consultar administrador', 'error');
 
             return redirect()->route('inst.index');
-
         }
     }
 
@@ -98,12 +112,12 @@ class instController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         //
-                if (Auth::user()->isAdmin) {
-               // dd($request->all());
-               $inst=instituicoes::findorfail($id);
+        if (Auth::user()->isAdmin) {
+            // dd($request->all());
+            $inst = instituicoes::findorfail($id);
             $inst->update([
                 'descricao' => $request->descricao,
                 'tipo' => $request->tipo,
@@ -119,41 +133,38 @@ class instController extends Controller
                 'linha_atendimento' => $request->linha_atendimento,
                 'whatsap' => $request->whatsap,
                 'facebook' => $request->facebook,
-                'site'=>$request->site,
+                'site' => $request->site,
                 'inicio_funcao' => $request->inicio_funcao,
             ]);
 
-            alert($inst['descricao'],'Dados da Instituição actualizados','success');
+            alert($inst['descricao'], 'Dados da Instituição actualizados', 'success');
 
             return redirect()->route('inst.index');
-        }else{
-             alert(Auth::user()->name,'Consultar administrador','error');
+        } else {
+            alert(Auth::user()->name, 'Consultar administrador', 'error');
 
             return redirect()->route('inst.index');
-
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         //
         if (Auth::user()->isAdmin) {
-               // dd($request->all());
-            $inst =instituicoes::findorfail($id);
-               $inst->delete();
+            // dd($request->all());
+            $inst = instituicoes::findorfail($id);
+            $inst->delete();
 
-            alert($inst['descricao'],'Instituição apagada','success');
-
-            return redirect()->route('inst.index');
-        }else{
-             alert(Auth::user()->name,'Consultar administrador','error');
+            alert($inst['descricao'], 'Instituição apagada', 'success');
 
             return redirect()->route('inst.index');
+        } else {
+            alert(Auth::user()->name, 'Consultar administrador', 'error');
 
+            return redirect()->route('inst.index');
         }
-           
     }
 }

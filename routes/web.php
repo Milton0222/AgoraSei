@@ -36,6 +36,7 @@ Route::middleware([
     Route::post('/inst/salvar',[instController::class, 'store'])->name('inst.store');
     Route::delete('/inst/{id}',[instController::class, 'destroy']);
     Route::put('/inst/{id}',[instController::class, 'update']);
+    Route::get('/inst/{id}',[instController::class, 'mudar']);
 
-    Route::get('/Departamento',[depaController::class, 'index'])->name('depa.index');
+    Route::get('/Depa',[depaController::class, 'index'])->name('depa.index');
 });
