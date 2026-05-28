@@ -54,8 +54,8 @@
                     <div class="dropdown-container" id="menu-instituicao">
                         <a href="{{route('inst.index')}}" class="submenu-link"><i class="fa-solid fa-plus-circle"></i>Gerir</a>
                         <a href="{{route('depa.index')}}" class="submenu-link"><i class="fa-solid fa-sitemap"></i> Departamentos</a>
-                        <a href="#" class="submenu-link"><i class="fa-solid fa-book-open"></i> Cursos</a>
-                        <a href="instituicao.html" class="submenu-link"><i class="fa-solid fa-info-circle"></i> Informações</a>
+                        <a href="{{route('curco.index')}}" class="submenu-link"><i class="fa-solid fa-book-open"></i> Cursos</a>
+                        <a href="{{route('activ.index')}}" class="submenu-link"><i class="fa-solid fa-info-circle"></i>Actividades</a>
                     </div>
                 </li>
 

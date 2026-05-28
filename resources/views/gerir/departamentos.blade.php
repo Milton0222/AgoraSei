@@ -3,6 +3,7 @@
     Gestão de Departamento
     @endsection
     @section('conteudo')
+   
     <!-- SECÇÃO DE GESTÃO DE DEPARTAMENTOS -->
     <section class="data-section">
         <div class="section-header">
