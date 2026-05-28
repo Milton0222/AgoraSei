@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('linha_atendimento')->nullable();
             $table->string('whatsap')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('site')->nullable();
             $table->date('inicio_funcao')->nullable();
 
             $table->unsignedBigInteger('user_id');

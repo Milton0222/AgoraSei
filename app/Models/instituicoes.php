@@ -26,6 +26,7 @@ class instituicoes extends Model
         'whatsap',
         'facebook',
         'inicio_funcao',
-        'user_id'
+        'user_id',
+        'site'
     ];
 }

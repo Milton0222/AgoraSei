@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\depaController;
 use App\Http\Controllers\instController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    alert()->success('Welcome to the application!');
+    //alert()->success('Welcome to the application!');
     return view('welcome');
 });
 
@@ -32,4 +33,9 @@ Route::middleware([
     //modulo administrativo
 
     Route::get('/inst', [instController::class, 'index'])->name('inst.index');
+    Route::post('/inst/salvar',[instController::class, 'store'])->name('inst.store');
+    Route::delete('/inst/{id}',[instController::class, 'destroy']);
+    Route::put('/inst/{id}',[instController::class, 'update']);
+
+    Route::get('/Departamento',[depaController::class, 'index'])->name('depa.index');
 });
