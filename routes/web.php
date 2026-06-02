@@ -45,7 +45,11 @@ Route::middleware([
     Route::put('/Depa/{id}', [depaController::class, 'update']);
     Route::delete('/Depa/{id}',[depaController::class, 'destroy']);
 
-    Route::get('/Curço',[curcoController::class, 'index'])->name('curco.index');
+    Route::get('/Curso',[curcoController::class, 'index'])->name('curco.index');
+    Route::post('/Curso/salvar',[curcoController::class, 'store'])->name('curso.store');
+    Route::put('/Curso/{id}',[curcoController::class, 'update']);
+    Route::delete('/Curso/{id}',[curcoController::class, 'destroy']);
+
 
     Route::get('/Activ',[activController::class, 'index'])->name('activ.index');
     Route::post('/Activi/salvar',[activController::class, 'store'])->name('activi.store');

@@ -165,7 +165,7 @@
         }
         document.getElementById('form-depa').submit();
         toggleModal(false);
-        document.getElementById('form-instituicao').reset();
+        document.getElementById('form-depa').reset();
 
     }
 

@@ -189,7 +189,6 @@
                 <button type="button" class="btn-primary" onclick="salvarFormulario()">Gravar Registo</button>
             </div>
         </div>
-
     </div>
 </x-app-layout>
 
