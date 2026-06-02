@@ -48,4 +48,8 @@ Route::middleware([
     Route::get('/Curço',[curcoController::class, 'index'])->name('curco.index');
 
     Route::get('/Activ',[activController::class, 'index'])->name('activ.index');
+    Route::post('/Activi/salvar',[activController::class, 'store'])->name('activi.store');
+    Route::delete('/Activi/{id}',[activController::class, 'destroy']);
+    Route::put('/Activi/{id}',[activController::class, 'update']);
+
 });
