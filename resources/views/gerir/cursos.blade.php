@@ -48,7 +48,7 @@
                         <td>{{$cur->duracao}} Anos</td>
                         <td>{{$cur->created_at}}</td>
                         <td class="actions-cell">
-                            <a onclick="actualizar('{{$cur->id}}','{{$cur->nome}}','{{$cur->mensalidade}}', '{{$cur->duracao}}','{{$cur->area_conhecimento}}','{{$cur->qtd_vaga}}','{{$cur->qtd_disciplina}}', '{{$cur->depa_id}}', '{{$cur->nivel_academico}}')" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a onclick="actualizar('{{$cur->id}}','{{$cur->nome}}','{{$cur->mensalidade}}', '{{$cur->duracao}}','{{$cur->area_conhecimento}}','{{$cur->qtd_vaga}}','{{$cur->qtd_disciplina}}', '{{$cur->depa_id}}', '{{$cur->nivel_academico}}','{{$cur->perfil_saida}}')" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a onclick="apagar('{{$cur->nome}}','{{$cur->id}}')" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
@@ -57,9 +57,6 @@
             </table>
         </div>
     </section>
-
-
-
     @endsection
 </x-app-layout>
 
@@ -135,6 +132,11 @@
                     <textarea id="area_conhecimento" cols="30" rows="3" name="area_conhecimento" class="form-control"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="sigla-inst">Perfil de Saida</label>
+                    <textarea id="perfil_saida" cols="30" rows="3" name="perfil_saida" class="form-control"></textarea>
+                </div>
+
             </form>
         </div>
         <div class="modal-footer">
@@ -167,7 +169,7 @@
     document.getElementById('fillterdepa')?.addEventListener('change',buscar);
     //atualizar curso 
 
-    function actualizar(id, nome, mensalidade, duracao, area_conhecimento, qtd_vagas, qtd_disciplina, depa_id, nivel_academico) {
+    function actualizar(id, nome, mensalidade, duracao, area_conhecimento, qtd_vagas, qtd_disciplina, depa_id, nivel_academico,perfil_saida) {
         document.getElementById('institutionModal').classList.add('active');
 
         document.getElementById('modal-titulo').textContent = `Atualizar, ${nome}.`;
@@ -179,6 +181,8 @@
         document.getElementById('qtd_disciplina').value = qtd_disciplina;
         document.getElementById('depa_id').value = depa_id;
         document.getElementById('nivel_academico').value = nivel_academico;
+        document.getElementById('perfil_saida').value = perfil_saida;
+
 
         const formEditar = document.getElementById('form-curso');
         formEditar.method = 'post';

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('qtd_vaga')->default(0);
             $table->enum('nivel_academico',['Bacharel','Licenciado','Mestrado','Pós Graduação','Doutoramento']);
 
+            $table->text('perfil_saida');
             $table->unsignedBigInteger('depa_id');
             $table->foreign('depa_id')->references('id')->on('departamentos')->onDelete('cascade');
             $table->timestamps();

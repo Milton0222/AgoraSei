@@ -23,10 +23,14 @@
                 </div>
                 <div class="nav-links">
                     <a href="#sobre" class="nav-link">Sobre</a>
-                    <a href="{{route('login')}}" class="nav-link">Entrar</a>
-                    <button id="admin" class="btn-panel">
+
+                    @if(Auth::user())
+                     <button id="admin" class="btn-panel">
                         <i class="fa-solid fa-lock"></i>
                         Painel de Gestão</button>
+                    @else
+                    <a href="{{route('login')}}" class="btn-panel">Entrar</a>
+                   @endif
                 </div>
             </div>
         </div>

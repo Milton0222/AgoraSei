@@ -58,7 +58,8 @@ class curcoController extends Controller
                 'qtd_disciplina' => $request->qtd_disciplina,
                 'qtd_vaga' => $request->qtd_vaga,
                 'nivel_academico' => $request->nivel_academico,
-                'depa_id' => $request->depa_id
+                'depa_id' => $request->depa_id,
+                'perfil_saida'=>$request->perfil_saida
             ]);
 
             alert($veri['nome'], 'Curso registado.', 'success');
@@ -102,7 +103,8 @@ class curcoController extends Controller
                 'qtd_disciplina' => $request->qtd_disciplina,
                 'qtd_vaga' => $request->qtd_vaga,
                 'nivel_academico' => $request->nivel_academico,
-                'depa_id' => $request->depa_id
+                'depa_id' => $request->depa_id,
+                 'perfil_saida'=>$request->perfil_saida
             ]);
 
             alert($veri['nome'], 'Dados actualizado.', 'success');

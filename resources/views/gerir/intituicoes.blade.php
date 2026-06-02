@@ -59,6 +59,7 @@
                             <a onclick="actualizar('{{$insts->instagram}}','{{$insts->linha_atendimento}}','{{$insts->whatsap}}','{{$insts->facebook}}','{{$insts->site}}','{{$insts->inicio_funcao}}','{{$insts->estado}}','{{$insts->amibiente_campus}}','{{$insts->reconhecido}}','{{$insts->modalidade_estudo}}','{{$insts->qtd_professor}}','{{$insts->qtd_estudante}}','{{$insts->localizacao}}','{{$insts->provincia}}','{{$insts->custo_licenciatura}}','{{$insts->descricao}}','{{$insts->id}}','{{$insts->tipo}}')" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a onclick="apagar('{{$insts->descricao}}','{{$insts->id}}')" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
                             <a onclick="mudar('{{$insts->id}}','{{$insts->estado}}')" title="Arquivar e Activar"><i class="fa-solid fa-info-circle"></i></a>
+                            <a onclick="depa('{{$insts->id}}','{{$insts->descricao}}')" title="Registar departamento" class="action-btn edit"> <i class="fa-solid fa-plus"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -190,9 +191,49 @@
             </div>
         </div>
     </div>
+
+
+    <!-- ================= 🔲 COMPONENTE MODAL À DIREITA depa ================= -->
+
+<div class="modal-overlay" id="depaModal" onclick="closeModalOutside(event)">
+
+    <div class="modal-right">
+        <div class="modal-header">
+            <i class="fa-solid fa-square-plus text-blue-600"></i>
+            <h3 id="modal-titulod">Registar Departamento</h3>
+            <button class="btn-close-modal" onclick="fechard()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="modal-body">
+            <form id="form-depa" action="{{route('depa.store')}}" method="post">
+                @csrf
+                <div class="form-group">
+                    <label for="nome-inst">Nome departamento(<strong id="alerta" style="color: red;">*</strong>)</label>
+                    <input type="text" id="nomed" name="nome" class="form-control" placeholder="Ex: Informática...">
+                </div>
+
+                 <input type="hidden" id="inst_id" name="inst_id">
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="fechard()">Cancelar</button>
+            <button type="button" class="btn-primary" onclick="salvar()">Gravar Registo</button>
+        </div>
+    </div>
+
+</div>
 </x-app-layout>
 
 <script>
+    //cadastrar depa
+
+    function depa(id, descricao){
+        document.getElementById('depaModal').classList.add('active');
+
+        document.getElementById('modal-titulod').textContent=`Cadastrar departamento de ${descricao}`;
+        document.getElementById('inst_id').value=id;
+    }
     //desabilitar
 
     function mudar(id, estado) {
@@ -297,5 +338,25 @@
             document.body.appendChild(form);
             form.submit();
         }
+    }
+
+    //submeter depa
+
+    function salvar(){
+        const nome = document.getElementById('nomed').value;
+        const inst_id = document.getElementById('inst_id').value;
+
+        if (!nome || !inst_id) {
+            alert("Preencher campos obrigatórios(*)");
+            return;
+        }
+        document.getElementById('form-depa').submit();
+        toggleModal(false);
+        document.getElementById('form-depa').reset();
+    }
+    //fechar depamodal
+
+    function fechard(){
+        document.getElementById('depaModal').classList.remove('active');
     }
 </script>

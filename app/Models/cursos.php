@@ -16,6 +16,7 @@ class cursos extends Model
             'qtd_disciplina',
             'qtd_vaga',
             'nivel_academico',
-            'depa_id'
+            'depa_id',
+            'perfil_saida'
     ];
 }
