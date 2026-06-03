@@ -17,20 +17,25 @@
         <div class="nav-container">
             <div class="nav-row">
                 <div>
-                    <span class="nav-logo">
-                        <i class="fa-solid fa-graduation-cap"></i> <h3>Agora</h3><h1>Sei</h1>
-                    </span>
+                    <a href="/" class="nav-link">
+                        <span class="nav-logo">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <h3>Agora</h3>
+                            <h1>Sei</h1>
+                        </span>
+                    </a>
+
                 </div>
                 <div class="nav-links">
                     <a href="#sobre" class="nav-link">Sobre</a>
 
                     @if(Auth::user())
-                     <button id="admin" class="btn-panel">
+                    <button id="admin" class="btn-panel">
                         <i class="fa-solid fa-lock"></i>
                         Painel de Gestão</button>
                     @else
                     <a href="{{route('login')}}" class="btn-panel">Entrar</a>
-                   @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -91,7 +96,7 @@
             </div>
         </div>
     </section>
-  
+
     <!-- --- MODAL 1: EXPLORAR CURSOS --- -->
     <div id="exploreModal" class="modal-overlay">
         <div class="modal-content">
@@ -100,11 +105,21 @@
                 <button class="close-modal" onclick="closeModal('exploreModal')">&times;</button>
             </div>
             <div class="search-box">
-                <input type="text" id="searchCursoInput" class="input-field"
+                <input type="text" id="filtercurso" class="input-field"
                     placeholder="Pesquisar por Engenharia, Economia...">
             </div>
-            <ul id="exploreCursosList" class="data-list">
-                <!-- Injetado por JS -->
+            <ul id="exploreCursosList1" class="data-list">
+                @foreach ($cursos as $cur)
+                <li class="data-item">
+                    <div>
+                        <strong>{{$cur->nome}}</strong>
+                        <span style="display:block; font-size:12px; color:var(--gray-500)">Área: {{$cur->area_conhecimento}}</span>
+                    </div>
+
+                    <span onclick="cursover('{{$cur->id}}','{{$cur->nome}}')" class="label" style="background:var(--blue-100); color:var(--blue-600); padding:3px 8px; border-radius:12px; font-size:12px"><i class="fa-solid fa-eye"></i></span>
+                </li>
+                @endforeach
+
             </ul>
         </div>
     </div>
@@ -113,16 +128,28 @@
     <div id="adminModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-sliders"></i> Gestão de Instituições</h3>
+                <h3><i class="fa-solid fa-sliders"></i> Explorar Instituições</h3>
                 <button class="close-modal" onclick="closeModal('adminModal')">&times;</button>
             </div>
             <form id="addInstForm" class="search-box">
-                <input type="text" id="newInstInput" class="input-field" placeholder="Nome da Nova Instituição"
+                <input type="text" id="InstInput" class="input-field" placeholder="Buscar instituição pelo nome ou endereço"
                     required>
-                <button type="submit" class="btn-submit">Adicionar</button>
+                <!--<button type="submit" class="btn-submit">Adicionar</button>-->
             </form>
-            <ul id="adminInstList" class="data-list">
-                <!-- Injetado por JS -->
+            <ul id="adminInstList1" class="data-list">
+                @foreach ($inst as $ins)
+                <li class="data-item">
+                    <div>
+                        <strong><i class="fa-solid fa-university" style="color:var(--blue-600); margin-right:8px"></i>{{$ins->descricao}}</strong>
+                        <span style="display:block; font-size:12px; color:var(--gray-500)">Localização: <strong>{{$ins->localizacao}}</strong></span>
+                    </div>
+
+                    <button class="btn-delete" onclick="instver('{{$ins->id}}','{{$ins->descricao}}')" title="Comentar">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </li>
+                @endforeach
+
             </ul>
         </div>
     </div>
@@ -134,12 +161,61 @@
     <script>
         // --- BASE DE DADOS EM MEMÓRIA (MOCK DATA) ---
         let instituicoes = ["Universidade Katyavala Bwila", "Instituto Politécnico Privado Wiliete"];
-        let cursos = [
-            { nome: "Ciência da Computação", area: "Tecnologias" },
-            { nome: "Engenharia Mecânica", area: "Engenharias" },
-            { nome: "Gestão de Empresas", area: "Ciências Sociais" }
+        let cursos = [{
+                nome: "Ciência da Computação",
+                area: "Tecnologias"
+            },
+            {
+                nome: "Engenharia Mecânica",
+                area: "Engenharias"
+            },
+            {
+                nome: "Gestão de Empresas",
+                area: "Ciências Sociais"
+            }
         ];
 
+        //detalhes de curso
+
+        function cursover(id,nome){
+            alert(`Em desenvolvimneo o painel info ${nome}`);
+        }
+
+        //detalhes de inst e comentarios
+
+        function instver(id,descricao){
+            alert(`Painel de comentarios em desenvolvimento ${descricao}`);
+        }
+
+        //filtrar curso
+        function buscar() {
+            const nome = document.getElementById('filtercurso').value;
+
+            if (!nome) {
+                return;
+            }
+            const params = new URLSearchParams();
+            if (nome) params.append('nome', nome);
+
+            window.location.href = '/?' + params.toString();
+
+        }
+        document.getElementById('filtercurso')?.addEventListener('input', buscar);
+        //filtarar inst 
+        function buscar1() {
+            const nome = document.getElementById('InstInput').value;
+
+            if (!nome) {
+                return;
+            }
+            const params = new URLSearchParams();
+            if (nome) params.append('instnome', nome);
+
+            window.location.href = '/?' + params.toString();
+
+        }
+
+        document.getElementById('InstInput')?.addEventListener('input', buscar1);
         // --- CONTROLO DOS MODAIS ---
         function openModal(id) {
             document.getElementById(id).classList.add('active');
@@ -151,14 +227,14 @@
             document.getElementById(id).classList.remove('active');
         }
 
-        function painel(){
-            window.location.href="/dashboard";
+        function painel() {
+            window.location.href = "/dashboard";
         }
 
         // Eventos de Abertura
         document.getElementById('openExploreBtn').addEventListener('click', () => openModal('exploreModal'));
         document.getElementById('openAdminBtn').addEventListener('click', () => openModal('adminModal'));
-        document.getElementById('admin').addEventListener('click',painel);
+        document.getElementById('admin').addEventListener('click', painel);
 
         // Fechar se clicar fora da caixa branca
         window.addEventListener('click', (e) => {

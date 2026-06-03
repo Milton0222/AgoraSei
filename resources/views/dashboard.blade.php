@@ -10,8 +10,8 @@
         <!-- Card 1: Total de Visitas -->
         <div class="card-metric">
             <div class="metric-info">
-                <p>Total de Acessos</p>
-                <h3>14,280</h3>
+                <p>Cursos</p>
+                <h3>{{$cursoc}}</h3>
                 <div class="metric-trend">
                     <i class="fa-solid fa-arrow-trend-up"></i> +12% este mês
                 </div>
@@ -24,8 +24,8 @@
         <!-- Card 2: Novos Estudantes -->
         <div class="card-metric">
             <div class="metric-info">
-                <p>Estudantes Auxiliados</p>
-                <h3>1,840</h3>
+                <p>Departamentos</p>
+                <h3>{{$depac}}</h3>
                 <div class="metric-trend">
                     <i class="fa-solid fa-arrow-trend-up"></i> +8.2% esta semana
                 </div>
@@ -39,7 +39,7 @@
         <div class="card-metric">
             <div class="metric-info">
                 <p>Instituições</p>
-                <h3>32</h3>
+                <h3>{{$instc}}</h3>
                 <div style="font-size: 0.8rem; color: var(--texto-mutado); margin-top: 4px;">
                     Mapeadas no Sistema
                 </div>
@@ -76,9 +76,9 @@
     <section class="data-section">
         <div class="section-header">
             <h2>Gerenciar Instituições de Ensino</h2>
-            <button class="btn-primary">
+           <!-- <button class="btn-primary">
                 <i class="fa-solid fa-plus"></i> Nova Instituição
-            </button>
+            </button>-->
         </div>
 
         <div class="table-responsive">
@@ -86,43 +86,33 @@
                 <thead>
                     <tr>
                         <th>Instituição</th>
-                        <th>Sigla</th>
+                        <th>Existência</th>
                         <th>Tipo</th>
                         <th>Departamentos</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="font-weight: 500;">Universidade Katyavala Bwila</td>
-                        <td style="color: var(--texto-mutado);">UKB</td>
-                        <td><span class="badge badge-publica">Pública</span></td>
-                        <td>6 Departamentos</td>
-                        <td class="actions-cell">
-                            <a href="#" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="#" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
+                    @foreach ($relatorio1 as $rel)
+                        <tr>
+                        <td style="font-weight: 500;">{{$rel->descricao}}</td>
+                        <td style="color: var(--texto-mutado);">
+                            @php 
+                                $data=explode('-',$rel->inicio_funcao);
+                                $tempo=date('Y')-$data[0];
+                            @endphp
+                            {{$tempo}} Anos
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 500;">Instituto Superior Politécnico Privado Wiliete</td>
-                        <td style="color: var(--texto-mutado);">ISPPW</td>
-                        <td><span class="badge badge-privada">Privada</span></td>
-                        <td>4 Departamentos</td>
-                        <td class="actions-cell">
-                            <a href="#" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="#" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
+                        <td>
+                            @if($rel->tipo=='Publica')
+                            <span class="badge badge-publica">Pública</span>
+                            @else
+                            <span class="badge badge-privada">Privada</span>
+                            @endif
                         </td>
+                        <td>{{$rel->qtddepa}} Departamentos</td>
                     </tr>
-                    <tr>
-                        <td style="font-weight: 500;">Instituto Superior Politécnico de Benguela</td>
-                        <td style="color: var(--texto-mutado);">ISPB</td>
-                        <td><span class="badge badge-privada">Privada</span></td>
-                        <td>5 Departamentos</td>
-                        <td class="actions-cell">
-                            <a href="#" class="action-btn edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="#" class="action-btn delete" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>

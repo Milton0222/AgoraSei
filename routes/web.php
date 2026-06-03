@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\activController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\curcoController;
 use App\Http\Controllers\depaController;
 use App\Http\Controllers\instController;
+use App\Models\cursos;
+use App\Models\departamentos;
+use App\Models\instituicoes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,19 +21,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    //alert()->success('Welcome to the application!');
-    return view('welcome');
-});
+//area publica
+Route::get('/', [Controller::class,'index1']);
+Route::get('/filtrar/cursos', [Controller::class,'filtrar_curso']);
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [Controller::class,'dashboard'])->name('dashboard');
 
 
     //modulo administrativo
