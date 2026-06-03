@@ -126,12 +126,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="sigla-inst">Área de conhecimento(<strong style="color: red;">*</strong>)</label>
-                    <textarea id="area_conhecimento" cols="30" rows="3" name="area_conhecimento" class="form-control"></textarea>
+                    <input type="text" name="area_conhecimento" id="area_conhecimento" class="form-control">
                 </div>
-
                 <div class="form-group">
                     <label for="sigla-inst">Perfil de Saida</label>
                     <textarea id="perfil_saida" cols="30" rows="3" name="perfil_saida" class="form-control"></textarea>

@@ -92,8 +92,6 @@
         </div>
     </section>
   
-
-
     <!-- --- MODAL 1: EXPLORAR CURSOS --- -->
     <div id="exploreModal" class="modal-overlay">
         <div class="modal-content">
