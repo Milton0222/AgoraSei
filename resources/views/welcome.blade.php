@@ -178,7 +178,7 @@
                                 <button class="btn-delete" onclick="instver('{{$insts->instagram}}','{{$insts->linha_atendimento}}','{{$insts->whatsap}}','{{$insts->facebook}}','{{$insts->site}}','{{$insts->inicio_funcao}}','{{$insts->estado}}','{{$insts->amibiente_campus}}','{{$insts->reconhecido}}','{{$insts->modalidade_estudo}}','{{$insts->qtd_professor}}','{{$insts->qtd_estudante}}','{{$insts->localizacao}}','{{$insts->provincia}}','{{$insts->custo_licenciatura}}','{{$insts->descricao}}','{{$insts->id}}','{{$insts->tipo}}')" title="Comentar">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
-                                <button title="Comentar" onclick="comentar()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <button title="Comentar" onclick="comentar('{{$insts->id}}')"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                             </div>
 
                         </li>
@@ -245,6 +245,11 @@
         let instituicoes = @json($inst);
         let cursos = @json($cursos);
 
+        
+        //ver comentarios
+        function comentar(id){
+            window.location.href=`/Comentarios/${id}`;
+        }
         //detalhes de curso
 
         function cursover(id, nome, mensalidade, duracao, area_conhecimento, qtd_disciplina, qtd_vaga, nivel_academico, perfil_saida, depa_id) {
@@ -282,9 +287,6 @@
             document.getElementById('provincia').textContent = provincia;
             document.getElementById('localizacao').textContent = localizacao;
             document.getElementById('custo_licenciatura').textContent = custo_licenciatura;
-
-
-
 
         }
 

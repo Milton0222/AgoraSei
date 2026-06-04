@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\activController;
+use App\Http\Controllers\comentarioController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\curcoController;
 use App\Http\Controllers\depaController;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 //area publica
 Route::get('/', [Controller::class,'index1']);
 Route::get('/filtrar/cursos', [Controller::class,'filtrar_curso']);
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -56,5 +59,11 @@ Route::middleware([
     Route::post('/Activi/salvar',[activController::class, 'store'])->name('activi.store');
     Route::delete('/Activi/{id}',[activController::class, 'destroy']);
     Route::put('/Activi/{id}',[activController::class, 'update']);
+
+    //comentarios
+    Route::get('/Comentarios/{id}',[comentarioController::class, 'comentarios'])->name('coment.ver');
+    Route::get('/Inst/comentar',[comentarioController::class,'store'])->name('coment.store');
+
+    
 
 });
