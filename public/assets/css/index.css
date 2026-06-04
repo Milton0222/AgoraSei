@@ -1,276 +1,784 @@
 /* --- 1. VARIÁVEIS E RESET CONFIG --- */
-        :root {
-            --bg-gray-50: #f9fafb;
-            --bg-white: #ffffff;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            --blue-100: #dbeafe;
-            --blue-600: #2563eb;
-            --blue-700: #1d4ed8;
-            --indigo-800: #3730a3;
-            --teal-100: #ccfbf1;
-            --teal-600: #0d9488;
-            
-            --max-width: 80rem;
-            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
+:root {
+    --bg-gray-50: #f9fafb;
+    --bg-white: #ffffff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --indigo-800: #3730a3;
+    --teal-100: #ccfbf1;
+    --teal-600: #0d9488;
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-sans);
-        }
+    --max-width: 80rem;
+    --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    --primary-blue: #1e40af;
+    /* Azul escuro para destaques e cabeçalhos */
+    --light-blue: #f0f4f9;
+    /* Fundo leve azulado para a área de chat */
+    --accent-blue: #3b82f6;
+    /* Azul vivo para botões e balões do utilizador */
+    --pure-white: #ffffff;
+    /* Branco puro */
+    --text-dark: #1e293b;
+    /* Cinza escuro para texto principal */
+    --text-light: #64748b;
+    /* Cinza claro para subtítulos e horários */
+    --border-color: #e2e8f0;
+    /* Cor suave para divisórias */
 
-        body {
-            background-color: var(--bg-gray-50);
-            color: var(--gray-800);
-            line-height: 1.5;
-        }
+}
 
-        /* --- 2. BARRA DE NAVEGAÇÃO --- */
-        .navbar {
-            background-color: var(--bg-white);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+}
 
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .nav-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
+body {
+    background-color: var(--bg-gray-50);
+    color: var(--gray-800);
+    line-height: 1.5;
+}
 
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--blue-600);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+/* --- 2. BARRA DE NAVEGAÇÃO --- */
+.navbar {
+    background-color: var(--bg-white);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
 
-        .nav-link {
-            color: var(--gray-600);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+.nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
 
-        .nav-link:hover { color: var(--blue-600); }
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-600);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .btn-panel {
-            background-color: var(--blue-600);
-            color: var(--bg-white);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.2s;
-        }
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-        .btn-panel:hover { background-color: var(--blue-700); }
+.nav-link {
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+}
 
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            background: linear-gradient(to right, var(--blue-700), var(--indigo-800));
-            color: var(--bg-white);
-            padding: 5rem 1rem;
-        }
+.nav-link:hover {
+    color: var(--blue-600);
+}
 
-        .content{
-            background-color: var(--bg-white);
-            margin: 5px;
-            border-radius: 5px;
-            flex-direction: column;
-        }
+.btn-panel {
+    background-color: var(--blue-600);
+    color: var(--bg-white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
 
-        .hero-container {
-            max-width: 64rem;
-            margin: 0 auto;
-            text-align: center;
-        }
+.btn-panel:hover {
+    background-color: var(--blue-700);
+}
 
-        .hero h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
+/* --- 3. HERO SECTION --- */
+.hero {
+    background: linear-gradient(to right, var(--blue-700), var(--indigo-800));
+    color: var(--bg-white);
+    padding: 5rem 1rem;
+}
 
-        @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+.content {
+    background-color: var(--bg-white);
+    margin: 5px;
+    border-radius: 5px;
+    flex-direction: column;
+}
 
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--blue-100);
-            max-width: 42rem;
-            margin: 0 auto 1.5rem auto;
-        }
+.hero-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+}
 
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding-top: 1rem;
-        }
+.hero h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
 
-        .btn-explore {
-            background-color: var(--bg-white);
-            color: var(--blue-700);
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            border: none;
-        }
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 3.75rem;
+    }
+}
 
-        .btn-explore:hover { background-color: var(--gray-100); }
+.hero p {
+    font-size: 1.125rem;
+    color: var(--blue-100);
+    max-width: 42rem;
+    margin: 0 auto 1.5rem auto;
+}
 
-        .btn-more {
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--bg-white);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-        }
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+}
 
-        /* --- 4. ESTATÍSTICAS RÁPIDAS --- */
-        .stats {
-            max-width: 72rem;
-            margin: -2rem auto 0 auto;
-            padding: 0 1rem;
-        }
+.btn-explore {
+    background-color: var(--bg-white);
+    color: var(--blue-700);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+}
 
-        .stats-grid {
-            background-color: var(--bg-white);
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            display: grid;
-            grid-template-columns: 1fr;
-        }
+.btn-explore:hover {
+    background-color: var(--gray-100);
+}
 
-        @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+.btn-more {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--bg-white);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
 
-        .stat-box { padding: 1.5rem 1rem; text-align: center; }
-    
+/* --- 4. ESTATÍSTICAS RÁPIDAS --- */
+.stats {
+    max-width: 72rem;
+    margin: -2rem auto 0 auto;
+    padding: 0 1rem;
+}
 
-        .stat-box:not(:last-child) { border-bottom: 1px solid var(--gray-100); }
-        @media (min-width: 768px) {
-            .stat-box:not(:last-child) { border-bottom: none; border-right: 1px solid var(--gray-100); }
-        }
+.stats-grid {
+    background-color: var(--bg-white);
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr;
+}
 
-        .stat-box .number { display: block; font-size: 1.875rem; font-weight: 700; color: var(--blue-600); }
-        .stat-box .label { color: var(--gray-500); font-size: 0.875rem; }
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-        /* --- 5. COMO FUNCIONA --- */
-        .features { max-width: 72rem; margin: 0 auto; padding: 4rem 1rem; }
-        .features-header { text-align: center; margin-bottom: 3rem; }
-        .features-header h2 { font-size: 1.875rem; font-weight: 700; color: var(--gray-900); }
-        .features-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-        @media (min-width: 768px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+.stat-box {
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
 
-        .feature-card {
-            background-color: var(--bg-white);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--gray-100);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        }
 
-        .icon-container { width: 3rem; height: 3rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem; }
-        .icon-blue { background-color: var(--blue-100); color: var(--blue-600); }
-        .icon-indigo { background-color: #e0e7ff; color: #4f46e5; }
-        .icon-teal { background-color: var(--teal-100); color: var(--teal-600); }
+.stat-box:not(:last-child) {
+    border-bottom: 1px solid var(--gray-100);
+}
 
-        /* --- 6. ESTILOS DOS MODAIS (INTERATIVIDADE) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 100; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
+@media (min-width: 768px) {
+    .stat-box:not(:last-child) {
+        border-bottom: none;
+        border-right: 1px solid var(--gray-100);
+    }
+}
 
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+.stat-box .number {
+    display: block;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--blue-600);
+}
 
-        .modal-content {
-            background-color: var(--bg-white);
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 38rem; width: 90%;
-            max-height: 85vh; overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
+.stat-box .label {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
 
-        .modal-overlay.active .modal-content { transform: translateY(0); }
+/* --- 5. COMO FUNCIONA --- */
+.features {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
 
-        .modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 1.5rem; border-bottom: 1px solid var(--gray-200);
-            padding-bottom: 0.5rem;
-        }
+.features-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
 
-        .modal-header h3 { font-size: 1.5rem; color: var(--gray-900); }
-        .close-modal { font-size: 1.5rem; color: var(--gray-500); cursor: pointer; border: none; background: none; }
-        .close-modal:hover { color: var(--gray-900); }
+.features-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
 
-        /* Formulários e Filtros */
-        .search-box {
-            display: flex; gap: 0.5rem; margin-bottom: 1rem;
-        }
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
 
-        .input-field {
-            flex: 1; padding: 0.6rem; border: 1px solid var(--gray-400); border-radius: 0.375rem; font-size: 1rem;
-        }
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-        .btn-submit {
-            background-color: var(--teal-600); color: white; border: none;
-            padding: 0.6rem 1rem; border-radius: 0.375rem; cursor: pointer; font-weight: bold;
-        }
-        .btn-submit:hover { background-color: #0f766e; }
+.feature-card {
+    background-color: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-100);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
 
-        /* Listas Dinâmicas */
-        .data-list { list-style: none; margin-top: 1rem;}
-        .data-item {
-            background-color: var(--gray-100); padding: 0.75rem;
-            border-radius: 0.375rem; margin-bottom: 0.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+.icon-container {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
 
-        .btn-delete {
-            background: none; border: none; color: #ef4444; cursor: pointer;
-        }
+.icon-blue {
+    background-color: var(--blue-100);
+    color: var(--blue-600);
+}
 
-        .footer { background-color: var(--gray-900); color: var(--gray-400); padding: 2rem 1rem; text-align: center; font-size: 0.875rem; }
+.icon-indigo {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.icon-teal {
+    background-color: var(--teal-100);
+    color: var(--teal-600);
+}
+
+/* --- 6. ESTILOS DOS MODAIS (INTERATIVIDADE) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 38rem;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 0.5rem;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: var(--gray-900);
+}
+
+.close-modal {
+    font-size: 1.5rem;
+    color: var(--gray-500);
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.close-modal:hover {
+    color: var(--gray-900);
+}
+
+/* Formulários e Filtros */
+.search-box {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    background-color: var(--teal-600);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-submit:hover {
+    background-color: #0f766e;
+}
+
+/* Listas Dinâmicas */
+.data-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.data-item {
+    background-color: var(--gray-100);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.footer {
+    background-color: var(--gray-900);
+    color: var(--gray-400);
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+
+/*painel comentario, curso e inst*/
+/* Contentor Principal */
+.chat-container {
+    display: flex;
+    width: 95vw;
+    max-width: 1200px;
+    background-color: var(--pure-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar {
+    width: 30%;
+    min-width: 300px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--pure-white);
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: var(--primary-blue);
+    color: var(--pure-white);
+}
+
+.sidebar-header h2 {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Caixa de Pesquisa */
+.search-box {
+    padding: 15px;
+    position: relative;
+    background-color: var(--pure-white);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--light-blue);
+    outline: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent-blue);
+    background-color: var(--pure-white);
+}
+
+.search-box i {
+    position: absolute;
+    left: 28px;
+    top: 27px;
+    color: var(--text-light);
+}
+
+/* Lista de Conversas */
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+
+.chat-item:hover {
+    background-color: var(--light-blue);
+}
+
+.chat-item.active {
+    background-color: #e0eafd;
+    border-left: 4px solid var(--primary-blue);
+}
+
+/* Componente de Avatar Genérico */
+.avatar {
+    width: 45px;
+    height: 45px;
+    background-color: var(--accent-blue);
+    color: var(--pure-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.chat-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.chat-info h4 {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-info p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-time {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    align-self: flex-start;
+}
+
+/* --- JANELA PRINCIPAL DO CHAT --- */
+.chat-window {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-blue);
+}
+
+/* Cabeçalho do Chat */
+.chat-header {
+    padding: 15px 20px;
+    background-color: var(--pure-white);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.current-user-info h3 {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.status {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status.online {
+    color: #10b981;
+}
+
+.status.online::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.header-actions button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: color 0.2s;
+}
+
+.header-actions button:hover {
+    color: var(--primary-blue);
+}
+
+/* Área de Mensagens (Histórico) */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-divider {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Estrutura dos Balões de Mensagem */
+.message {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 4px;
+    padding: 0 5px;
+}
+
+/* Mensagem Recebida (Professor/Tutor) */
+.message.received {
+    align-self: flex-start;
+}
+
+.message.received .message-content {
+    background-color: var(--pure-white);
+    color: var(--text-dark);
+    border-top-left-radius: 2px;
+}
+
+.message.received .message-time {
+    align-self: flex-start;
+}
+
+/* Mensagem Enviada (Estudante) */
+.message.sent {
+    align-self: flex-end;
+}
+
+.message.sent .message-content {
+    background-color: var(--accent-blue);
+    color: var(--pure-white);
+    border-top-right-radius: 2px;
+}
+
+.message.sent .message-time {
+    align-self: flex-end;
+}
+
+/* --- RODAPÉ: ENTRADA DE TEXTO --- */
+.chat-input-area {
+    padding: 15px 20px;
+    background-color: var(--pure-white);
+    border-top: 1px solid var(--border-color);
+}
+
+.input-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.message-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    outline: none;
+    font-size: 0.95rem;
+    background-color: var(--light-blue);
+    transition: 0.2s;
+}
+
+.message-input:focus {
+    border-color: var(--accent-blue);
+    background-color: var(--pure-white);
+}
+
+.btn-action,
+.btn-send {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s, color 0.2s;
+}
+
+.btn-action {
+    width: 38px;
+    height: 38px;
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.btn-action:hover {
+    background-color: #e0eafd;
+}
+
+.btn-send {
+    width: 42px;
+    height: 42px;
+    background-color: var(--primary-blue);
+    color: var(--pure-white);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.btn-send:hover {
+    background-color: var(--accent-blue);
+    transform: scale(1.05);
+}
+
+/* Customização básica da barra de rolagem (Scrollbar) */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
