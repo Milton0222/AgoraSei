@@ -62,8 +62,9 @@ Route::middleware([
 
     //comentarios
     Route::get('/Comentarios/{id}',[comentarioController::class, 'comentarios'])->name('coment.ver');
-    Route::get('/Inst/comentar',[comentarioController::class,'store'])->name('coment.store');
+    Route::post('/Inst/comentar',[comentarioController::class,'store'])->name('coment.store');
+    Route::delete('/Comentario/{id}',[comentarioController::class, 'destroy']);
+    Route::put('/Comentario/{id}',[comentarioController::class, 'update']);
 
-    
 
 });

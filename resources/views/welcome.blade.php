@@ -27,7 +27,7 @@
 
                 </div>
                 <div class="nav-links">
-                    <a href="#sobre" id="sobre" class="nav-link">Sobre</a>
+                    <a href="#sobre" id="sobrebtn" class="nav-link">Sobre</a>
 
                     @if(Auth::user())
                     <button id="admin" class="btn-panel">
