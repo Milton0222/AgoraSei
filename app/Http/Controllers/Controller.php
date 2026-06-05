@@ -36,8 +36,14 @@ class Controller extends BaseController
         $cursos=$queryc->get();
         $inst=$queryi->get();
 
+        //buscar actividades por instituicoes
 
-        return view('welcome', compact('cursos', 'inst'));
+        $actividades=instituicoes::join('actividades','instituicoes.id','actividades.inst_id')
+                            ->selectRaw('instituicoes.descricao as nome, actividades.descricao,actividades.created_at')
+                            ->get();
+
+
+        return view('welcome', compact('cursos', 'inst','actividades'));
     }
 
     public function dashboard()

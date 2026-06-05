@@ -61,15 +61,17 @@
 
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-users"></i> Estudantes
+                    <a href="{{route('user.index')}}" class="sidebar-link">
+                        <i class="fa-solid fa-users"></i> Utilizadores
                     </a>
                 </li>
+                <!--
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="fa-solid fa-gears"></i> Configurações
                     </a>
                 </li>
+-->
             </ul>
         </div>
 

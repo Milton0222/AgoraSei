@@ -27,7 +27,9 @@
 
                 </div>
                 <div class="nav-links">
-                    <a href="#sobre" id="sobrebtn" class="nav-link">Sobre</a>
+                    <a href="#sobre" onclick="up()" class="nav-link">Sobre</a>
+                    <a href="#evento" onclick="upv()" class="nav-link">Eventos</a>
+
 
                     @if(Auth::user())
                     <button id="admin" class="btn-panel">
@@ -94,6 +96,24 @@
                 <h3>Guias de Cursos</h3>
                 <p>Aceda ao perfil de saída, duração, cadeiras principais e mercado de trabalho de cada graduação.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- eventos instituiocoes -->
+    <section id="evento" class="features">
+        <div class="features-header">
+            <h2>Actividades Realizadas</h2>
+            <p>Reunimos as actividades académicas por Instituições.</p>
+        </div>
+         <div class="features-grid">
+        @foreach ($actividades as $activ)
+            <div class="feature-card">
+                <div class="icon-container icon-blue"><i class="fa-solid fa-university"></i></div>
+                <h3>{{$activ->nome}}</h3>
+                <p>{{$activ->descricao}}</p>
+                <p>{{$activ->created_at}}</p>
+            </div>
+            @endforeach
         </div>
     </section>
 
@@ -245,10 +265,10 @@
         let instituicoes = @json($inst);
         let cursos = @json($cursos);
 
-        
+
         //ver comentarios
-        function comentar(id){
-            window.location.href=`/Comentarios/${id}`;
+        function comentar(id) {
+            window.location.href = `/Comentarios/${id}`;
         }
         //detalhes de curso
 
@@ -327,14 +347,31 @@
                 document.getElementById('curso').style.display = 'block';
                 document.getElementById('sobre').style.display = 'none';
                 document.getElementById('inst').style.display = 'none';
+                document.getElementById('evento').style.display = 'none';
 
             }
             if (id === 'adminModal') {
                 document.getElementById('curso').style.display = 'none';
                 document.getElementById('sobre').style.display = 'none';
                 document.getElementById('inst').style.display = 'block';
+                document.getElementById('evento').style.display = 'none';
                 //renderGestaoInstituicoes();
             }
+        }
+
+        //abilitar section sobre
+        function up() {
+            document.getElementById('curso').style.display = 'none';
+            document.getElementById('sobre').style.display = 'block';
+            document.getElementById('inst').style.display = 'none';
+            document.getElementById('evento').style.display = 'none';
+        }
+
+        function upv() {
+            document.getElementById('curso').style.display = 'none';
+            document.getElementById('sobre').style.display = 'none';
+            document.getElementById('inst').style.display = 'none';
+            document.getElementById('evento').style.display = 'block';
         }
 
         function closeModal(id) {

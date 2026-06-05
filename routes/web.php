@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\curcoController;
 use App\Http\Controllers\depaController;
 use App\Http\Controllers\instController;
+use App\Http\Controllers\userController;
 use App\Models\cursos;
 use App\Models\departamentos;
 use App\Models\instituicoes;
@@ -37,6 +38,12 @@ Route::middleware([
 
 
     //modulo administrativo
+
+    Route::get('/Users',[userController::class,'index'])->name('user.index');
+    Route::post('/User/salvar',[userController::class, 'store'])->name('user.store');
+    Route::put('/User/{id}',[userController::class, 'update']);
+    Route::delete('/User/{id}',[userController::class, 'destroy']);
+
 
     Route::get('/inst', [instController::class, 'index'])->name('inst.index');
     Route::post('/inst/salvar',[instController::class, 'store'])->name('inst.store');
