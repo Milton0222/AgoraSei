@@ -141,10 +141,10 @@
         new Chart(ctxAcessos, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+                labels: @json($acessosLabels),
                 datasets: [{
                     label: 'Acessos únicos',
-                    data: [1200, 1900, 3200, 4500, 6100], // Simulação de crescimento
+                    data: @json($acessosDados),
                     borderColor: '#2563eb',
                     backgroundColor: 'rgba(37, 99, 235, 0.1)',
                     tension: 0.3,
@@ -162,10 +162,10 @@
         new Chart(ctxCursos, {
             type: 'bar',
             data: {
-                labels: ['Saúde', 'Tecnologias', 'Humanidades', 'Economia'],
+                labels: @json($cursosLabels),
                 datasets: [{
                     label: 'Quantidade de Cursos',
-                    data: [8, 14, 6, 9],
+                    data: @json($cursosDados),
                     backgroundColor: '#6366f1',
                     borderRadius: 6
                 }]
